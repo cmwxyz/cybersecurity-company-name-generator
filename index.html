@@ -1,0 +1,134 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Cybersecurity Company Name Generator</title>
+</head>
+<body onload="brython()">
+    <noscript>Turn on Javascript to view this site.</noscript>
+    <canvas id="Matrix"></canvas>
+    <script src="./index.js"></script>
+<div class="centered" id="main-content">
+    <h1 style="text-align: center;">Cybersecurity Company Name Generator</h1>
+    <div style="text-align: center;">
+    <button id="go-button">?</button>
+
+    </div>
+    <script type="text/python" id="script0">
+        from browser import document
+        import random
+
+        first = ["Deep",
+                "Iron",
+                "DNS",
+                "Point",
+                "Crowd",
+                "Fort",
+                "Ping",
+                "Proof",
+                "Cyber",
+                "Fire",
+                "Force",
+                "Blue",
+                "Clear",
+                "Risk",
+                "Laser",
+                "Digital",
+                "Keep",
+                "Defender",
+                "Total",
+                "Howl",
+                "Absolute",
+                "Securo",
+                "Veri",
+                "Private",
+                "Pro",
+                "Dark",
+                "Strong",
+                "Rapid",
+                "Cipher",
+                "Intruder",
+                "Perimeter"
+                ]
+
+        single_word_only =["Veri",
+                "Securo"
+                ]
+
+        second = ["Strike",
+                "Bow",
+                "Identity",
+                "Security",
+                "Watch",
+                "Guard",
+                "Trust",
+                "Point",
+                "Secure",
+                "Root",
+                "Net",
+                "Cloud",
+                "Filter",
+                "Patrol",
+                "Safe",
+                "Gate",
+                "Token",
+                "Wolf",
+                "Wall",
+                "Shield",
+                "Fortress",
+                "Gladiator",
+                "Layer"
+                ]
+
+        third = ["Group",
+                "Software",
+                "Labs",
+                "Security",
+                "Unlimited"
+                ]
+        check_size = 100
+
+
+
+
+        def show(e):
+            # select random word from first
+            rand_num = random.randint(1, check_size) % len(first)
+            rand_word = first[rand_num]
+
+            # insert space half the time if first half not in single_word_only list
+            if rand_word not in single_word_only:
+                space = bool(random.getrandbits(1))
+                if space == True:
+                    rand_word += " "
+
+            # select random word from second
+            rand_num = random.randint(1, check_size) % len(second)
+            rand_word += second[rand_num]
+
+            # add a suffix 30% of the time
+            if random.randint(1, 10) > 7:
+                rand_num = random.randint(1, check_size) % len(third)
+                rand_word += (" " + third[rand_num])
+
+            document['randoms'].clear()
+
+            # show the word
+            document['randoms'] <= rand_word
+
+        document['go-button'].bind('click', show)
+    </script>
+    <div id="randoms"></div>
+</div>
+</body>
+</html>
+
